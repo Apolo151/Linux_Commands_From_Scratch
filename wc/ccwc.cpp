@@ -4,14 +4,13 @@
 using namespace std;
 
 
-int bytes_num(ifstream &in){
+int bytes_num(ifstream &fin){
     /*return the no. of bytes in the file*/
     /*char size = 1 byte*/
     char c;
     int bytes_cnt=0;
     
-    while(!in.eof()){
-        in.get(c);
+    while(fin.get(c)){
         ++bytes_cnt;
     }
     return bytes_cnt;
@@ -19,17 +18,18 @@ int bytes_num(ifstream &in){
 
 
 int main(int argc, char *argv[]){
-    ifstream InFile; // create filestream object
-    InFile.open(argv[argc-1], ios::binary);
+    ifstream fin; // create filestream object
+    cout << argc << endl;
+    fin.open(argv[argc-1]);
     
     cout << argv[argc-1] << '\n';
     if(argc > 1){
-        cout << bytes_num(InFile);
+        cout << bytes_num(fin);
     }
     else{
 
     }
 
-    InFile.close();
+    fin.close();
     return 0;
 }
